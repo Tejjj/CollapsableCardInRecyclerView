@@ -11,14 +11,52 @@
         android:layout_marginBottom="10dp"
         tools:context=".MainActivity">
 
+        <LinearLayout
+            android:id="@+id/llRefreshContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintBaseline_toTopOf="@id/parentRecyclerView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/refresh"
+                android:layout_width="100dp"
+                android:layout_height="64dp"
+                android:layout_margin="10dp"
+                android:onClick="refreshList"
+                android:text="Refresh"
+                android:textSize="12sp"
+                app:layout_constraintBaseline_toTopOf="@id/parentRecyclerView"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="100dp"
+                android:layout_height="64dp"
+                android:layout_margin="10dp"
+                android:onClick="clear"
+                android:textSize="12sp"
+                app:layout_constraintBaseline_toTopOf="@id/parentRecyclerView"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="clear"/>
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/parentRecyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_margin="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
+            app:layout_constraintTop_toBottomOf="@id/llRefreshContent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

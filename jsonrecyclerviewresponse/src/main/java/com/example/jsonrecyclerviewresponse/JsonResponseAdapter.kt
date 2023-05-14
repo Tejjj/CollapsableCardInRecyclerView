@@ -1,10 +1,12 @@
 package com.example.jsonrecyclerviewresponse
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.dandan.jsonhandleview.library.JsonViewLayout
 import com.example.jsonrecyclerviewresponse.databinding.ProfileItemBinding
 
 
@@ -17,8 +19,15 @@ class JsonResponseAdapter :
     }
 
     override fun onBindViewHolder(holder: ProfileViewHolder, position: Int) {
-        val image = getItem(position)
-        holder.bind(image)
+        val jsonString = getItem(position)
+        //holder.bind(image)
+        try {
+            holder.jsonView.bindJson(jsonString)
+            holder.jsonView.expandAll()
+        } catch (exception: Exception) {
+            Log.d("Tejaswini_Json", " Binding exception occured :: $exception")
+        }
+
     }
 
 
@@ -26,8 +35,12 @@ class JsonResponseAdapter :
         private val binding: ProfileItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
+        var jsonView: JsonViewLayout
+                init {
+                    jsonView = binding.jsonView
+                }
         fun bind(jsonString: String) {
-            binding.apply {
+           /* binding.apply {
                 profile = jsonString
                 jsonView.bindJson(jsonString)
                 jsonView.expandAll()
@@ -35,7 +48,7 @@ class JsonResponseAdapter :
                 // binding.profileImage.load(item.downloadUrl) {
                 // bind the json string to a view.
                 executePendingBindings()
-            }
+            }*/
 
         }
     }
